@@ -1,0 +1,303 @@
+﻿@model MayTinh.Models.PaginationSet<MayTinh.Data.Product>
+@{
+    ViewData["Title"] = "Tìm kiếm sản phẩm";
+    var ListCate = (List<MayTinh.Data.Category>)ViewBag.ListCate;
+}
+<!--  breadcrumb -->
+<div class="breadcrumb-area padding-30">
+    <div class="container">
+        <div class="breadcrumb breadcrumb-box">
+            <ul>
+                <li><a href="/"><span><span>Trang chủ</span></span></a></li>
+                <li><span>Tìm kiếm</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- / breadcrumb -->
+<!--  category product -->
+<section class="main-page container">
+    <div class="main-container col2-left-layout">
+        <div class="main">
+            <div class="row">
+                <!--  left side -->
+                <aside class="col-sm-4 col-md-3 col-lg-3 left-column">
+                    <!--  category menu -->
+                    <div class="nav_vmmenu-area">
+                        <div class="nav_inner">
+                            <div class="vmmenu-title gray9-bg"><i class="fa fa-list"></i><span>Danh mục</span></div>
+                            <div class="category-list">
+                                <div class="category-list-inner">
+                                    <ul class="sf-vartical-menu2 accordion">
+                                        <li>
+                                            <a href="/"><span>Trang chủ</span></a>
+                                        </li>
+                                        @foreach (var category in ListCate.Where(x => x.ParentId == null))
+                                        {
+                                            var url = "/chuyen-muc/" + @category.Url + "/" + @category.Id;
+                                            var childCategories = ListCate.Where(x => x.ParentId == category.Id);
+                                            var childCate = ListCate.Where(x => x.ParentId == category.Id).FirstOrDefault();
+                                            if (childCategories.Count() > 0)
+                                            {
+                                                <li class="parent">
+                                                    <a href="@url">@category.Name</a>
+                                                    @if (childCategories.Count() > 0)
+                                                    {
+                                                        <ul class="parent">
+                                                            @foreach (var childCategory in childCategories)
+                                                            {
+                                                                var childUrl = "/chuyen-muc/" + childCategory.Url + "/" + childCategory.Id;
+                                                                <li><a href="@childUrl">@childCategory.Name</a></li>
+                                                            }
+                                                        </ul>
+                                                    }
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li> <a href="@url"><span>@category.Name</span></a></li>
+                                            }
+                                        }
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / category menu -->
+                    <!--  catalog  -->
+                    <div class="catalog-area padding-30">
+                        <div class="catalog-inner">
+                            <div class="catalog-box">
+
+                                <!-- Start testimonial -->
+                                <div class="testimonials padding-30">
+                                    <div class="testimonial">
+                                        <div class="testimonial-inner">
+                                            <i class="fa fa-quote-left"></i>
+                                            <p>There are many variations of ags of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected huour, or randomised words which don't look even slightly believable.</p>
+                                            <i class="fa fa-quote-right text-right"></i>
+                                            <img src="~/image/client.png" alt="">
+                                            <h3>Monti Ipsum</h3>
+                                        </div>
+                                        <div class="testimonial-inner">
+                                            <i class="fa fa-quote-left"></i>
+                                            <p>There are many variations of ags of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected huour, or randomised words which don't look even slightly believable.</p>
+                                            <i class="fa fa-quote-right text-right"></i>
+                                            <img src="~/image/client.png" alt="">
+                                            <h3>Monti Ipsum</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end testimonial -->
+                                <!-- start aside category banner -->
+                                <div class="aside-category-banner padding-30">
+                                    <div class="aside-category-banner-inner">
+                                        <div class="aside-category-banner-img">
+                                            <img alt="" src="~/image/cat-banner.png" />
+                                            <div class="aside-category-banner-button">
+                                                <a href="#" class="btn btn-button blue-bg white btn-hover">buy now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end aside category banner -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / catalog -->
+                    <!-- / aside category banner -->
+                </aside>
+                <!-- / left -->
+                <!-- Right side -->
+                <aside class=" col-sm-8 col-md-9 col-lg-9">
+                    <div class="col-main">
+                        <!--  category big banner -->
+                        <div class="category-big-banner margin-bottom">
+                            <div class="category-big-banner-box">
+                                <div class="category-big-banner-img">
+                                    <img src="~/image/category-banner.png" alt="" />
+                                </div>
+                                <div class="category-big-banner-content hidden-xs">
+                                    <div class="category-title">Tea collection</div>
+                                    <div class="sub-cat-title">Green tea</div>
+                                    <div class="category-big-banner-detials">
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum has been the industry s standard. </p>
+                                    </div>
+                                    <a class="btn btn-button bunker-color-bg white btn-hover" href="#"><i class="fa fa-shopping-cart"></i>Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  category big banner -->
+                        <!--  our product -->
+                        <div class="category-products">
+                            <!--toolbar-->
+                            <div class="toolbar toolbar-bottom padding-30">
+                                <div class="sorter margin-buttom padding-top-product">
+                                    <p class="view-mode">
+                                        <label>View as:</label>
+                                        <a title="grid view"><i class="fa fa-th-large"></i><span>grid</span></a>
+                                    </p>
+                                    <form method="get" asp-action="Search" asp-controller="Products" class="showall">
+                                        <div class="sort-by">
+                                            <select name="sort" data-toggle="tooltip" data-width="100%" data-live-search="true" class="select selector1">
+                                                <option value="">Giá</option>
+                                                <option value="asc">Tăng dần</option>
+                                                <option value="desc">Giảm dần</option>
+                                            </select>
+                                        </div>
+                                        <input type="hidden" name="keyword" value="@Model.Keyword" />
+                                        <div class="limiter">
+                                            <span class="fa fa-long-arrow-up"></span>
+                                            <select name="pageSize" data-toggle="tooltip" data-width="100%" data-live-search="true" class="select selector1">
+                                                <option value="">Show</option>
+                                                <option value="10">10</option>
+                                                <option value="15">15</option>
+                                                <option value="20">20</option>
+                                            </select>
+
+                                        </div>
+                                        <div class="limiter">
+                                            <button class="btn btn-button bunker-color-bg white btn-hover" style="height:30px;" type="submit"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- toolbar -->
+                            <div class="product-container">
+                                <div id="products-grid">
+                                    <ul class="products-grid row medium-products product-column-2">
+                                        @if (Model.Count > 0)
+                                        {
+                                            foreach (var item in Model.Items)
+                                            {
+                                                <!-- item -->
+                                                <li class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                                                    <div class="single-item">
+                                                        <div class="single-item-inner">
+                                                            <div class="single-item-img">
+                                                                <div title="product image">
+                                                                    <img src="@item.Logo" class="image" alt="product image" />
+                                                                    <div class="hover-box">
+                                                                        <button title="Add to cart" data-toggle="tooltip" data-placement="top"
+                                                                                type="button" data-id="@item.Id" class="btn btn-button cart-button btn-add-cart">
+                                                                            Thêm giỏ hàng
+                                                                        </button>
+                                                                        <a href="/san-pham/@item.Url/@item.Id" class="quickview"><i class="fa fa-eye"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                                @if (item.PriceDiscount > 0 && item.Price > 0)
+                                                                {
+                                                                    <div class="item-lable">
+                                                                        <span class="lable-new">-@(Math.Floor(Convert.ToDecimal(item.Price / item.PriceDiscount - 1) * 100))%</span>
+                                                                        <span class="lable-sale">sale</span>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                            <div class="item-content">
+                                                                <div class="product-name">
+                                                                    <a href="/san-pham/@item.Url/@item.Id">
+                                                                        @item.Name
+                                                                    </a>
+                                                                </div>
+                                                                <div class="ratting-box">
+                                                                    <div class="rating">
+                                                                        <span class="star active"></span>
+                                                                        <span class="star active"></span>
+                                                                        <span class="star active"></span>
+                                                                        <span class="star active"></span>
+                                                                        <span class="star-half-o"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="product-price">
+                                                                    @if (item.PriceDiscount > 0 && item.Price > 0)
+                                                                    {
+                                                                        <span class="old-price">@Convert.ToDecimal(item.Price).ToString("N0") đ</span>
+                                                                        <span class="new-price">@Convert.ToDecimal(item.PriceDiscount).ToString("N0") đ</span>
+                                                                    }
+                                                                    else if (item.Price > 0)
+                                                                    {
+                                                                        <span class="new-price">@Convert.ToDecimal(item.Price).ToString("N0") đ</span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span class="new-price">Liên hệ</span>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <!-- / item -->
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            <div><h3>Không tìm thấy sản phẩm</h3></div>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="toolbar toolbar-bottom padding-30">
+                                <div class="pager pager-area latest-blogs">
+                                    @if (Model.TotalPages > 1)
+                                    {
+                                        // Create numeric links
+                                        var startPageIndex = Math.Max(1, Model.Page - Model.MaxPage / 2);
+                                        var endPageIndex = Math.Min(Model.TotalPages, Model.Page + Model.MaxPage / 2);
+
+                                        <nav>
+                                            <ul class="pagination">
+                                                @if (Model.Page > 1)
+                                                {
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?keyword=@Model.Keyword&sort=@Model.Sort&pageSize=@Model.PageSize&page=1" aria-label="First">
+                                                            <i class="fa fa-angle-double-left"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?keyword=@Model.Keyword&sort=@Model.Sort&pageSize=@Model.PageSize&page=@(Model.Page-1)" aria-label="Previous">
+                                                            <i class="fa fa-angle-double-left"></i>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                @for (int i = startPageIndex; i <= endPageIndex; i++)
+                                                {
+                                                    if (Model.Page == i)
+                                                    {
+                                                        <li class="active page-item"><a class="page-link" href="?keyword=@Model.Keyword&sort=@Model.Sort&pageSize=@Model.PageSize&page=@i" title="Trang @i">@i</a></li>
+                                                    }
+                                                    else
+                                                    {
+                                                        <li class="page-item"><a class="page-link" href="?keyword=@Model.Keyword&sort=@Model.Sort&pageSize=@Model.PageSize&page=@i" title="Trang @i">@i</a></li>
+                                                    }
+                                                }
+                                                @if (Model.Page < Model.TotalPages)
+                                                {
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?keyword=@Model.Keyword&sort=@Model.Sort&pageSize=@Model.PageSize&page=@(Model.Page+1)" aria-label="Next">
+                                                            <i class="fa fa-angle-double-right"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?keyword=@Model.Keyword&sort=@Model.Sort&pageSize=@Model.PageSize&page=@Model.TotalPages" aria-label="Last">
+                                                            <i class="fa fa-angle-double-right"></i>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </nav>
+                                    }
+                                </div>
+                            </div>
+                        <!-- / our product -->
+                    </div>
+                </aside>
+                <!-- / Right side -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / category product -->
