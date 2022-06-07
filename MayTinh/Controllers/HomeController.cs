@@ -23,15 +23,11 @@ namespace MayTinh.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //Ds slide
-            ViewBag.ListSlides = await _context.Slides.Where(a =>a.Status == 1).OrderBy(x => x.DisplayOrder).ToListAsync();
-
-            //Ds chuyên mục
-            ViewBag.ListCategories =await _context.Categories.Where(a => a.ShowHome == true && a.Status == 1).OrderBy(x => x.DisplayOrder).ToListAsync();
+            
             //SP Hot
             ViewBag.ListProductHot = await _context.Products.Where(a => a.Status == 1).OrderBy(x => x.DisplayOrder).Take(8).ToListAsync();
             //SP Mới
-            ViewBag.ListProductNew = await _context.Products.Where(a => a.Status == 1&& a.IsNew==true).OrderByDescending(x => x.CreateDate).Take(5).ToListAsync();
+            ViewBag.ListProductNew = await _context.Products.Where(a => a.Status == 1&& a.IsNew==true).OrderByDescending(x => x.CreateDate).Take(8).ToListAsync();
             //Ds tin tức
             ViewBag.ListNews = await _context.News.Where(a =>a.Status == 1).OrderBy(x => x.DisplayOrder).Take(4).ToListAsync();
             return View();

@@ -31,7 +31,7 @@ namespace MayTinh.Controllers
         }
 
 
-        public async Task<IActionResult> ListProduct( int page = 1, int pageSize = 1)
+        public async Task<IActionResult> ListProduct( int page = 1, int pageSize = 12)
         {
             int totalRow = 0;
             var ListProduct = await _context.Products.Where(x =>  x.Status == 1).ToListAsync();
@@ -51,7 +51,7 @@ namespace MayTinh.Controllers
             return View(paginationSet);
         }
 
-        public async Task<IActionResult> ProductCategories(long id, string sort, int page = 1, int pageSize = 1)
+        public async Task<IActionResult> ProductCategories(long id, string sort, int page = 1, int pageSize = 12)
         {
             int totalRow = 0;
             var category = await _context.Categories.Where(x => x.Id == id).FirstOrDefaultAsync();

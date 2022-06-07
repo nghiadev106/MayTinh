@@ -436,16 +436,10 @@ D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Areas\Ad
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Areas\Admin\Views\Product\Create.cshtml.g.cs
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Areas\Admin\Views\Product\Edit.cshtml.g.cs
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Areas\Admin\Views\Product\Index.cshtml.g.cs
-D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Areas\Admin\Views\Promotion\Create.cshtml.g.cs
-D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Areas\Admin\Views\Promotion\Edit.cshtml.g.cs
-D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Areas\Admin\Views\Promotion\Index.cshtml.g.cs
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_LayoutAdmin.cshtml.g.cs
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Areas\Admin\Views\Slide\Create.cshtml.g.cs
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Areas\Admin\Views\Slide\Edit.cshtml.g.cs
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Areas\Admin\Views\Slide\Index.cshtml.g.cs
-D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Areas\Admin\Views\TopMenu\Create.cshtml.g.cs
-D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Areas\Admin\Views\TopMenu\Edit.cshtml.g.cs
-D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Areas\Admin\Views\TopMenu\Index.cshtml.g.cs
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Areas\Admin\Views\User\Login.cshtml.g.cs
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Blogs\DetailBlog.cshtml.g.cs
@@ -456,11 +450,8 @@ D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Ca
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Cart\Index.cshtml.g.cs
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Home\Contact.cshtml.g.cs
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Home\PolicyAndTerms.cshtml.g.cs
-D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Home\ProductCategories.cshtml.g.cs
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Products\DetailProduct.cshtml.g.cs
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Products\Search.cshtml.g.cs
-D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Products\SearchAdvand.cshtml.g.cs
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Shared\Components\Menu\Index.cshtml.g.cs
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
@@ -954,3 +945,6 @@ D:\DA\MayTinh\MayTinh\obj\Debug\net5.0\MayTinh.genruntimeconfig.cache
 D:\DA\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Home\About.cshtml.g.cs
 D:\DA\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Products\ListProduct.cshtml.g.cs
 D:\DA\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Products\ProductCategories.cshtml.g.cs
+D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Home\About.cshtml.g.cs
+D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Products\ListProduct.cshtml.g.cs
+D:\nghia\DoAnTotNghiep2022\Lộc\MayTinh\MayTinh\obj\Debug\net5.0\Razor\Views\Products\ProductCategories.cshtml.g.cs

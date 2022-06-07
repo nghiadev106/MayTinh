@@ -106,45 +106,4 @@
             </div>
         </div>
     </div>
-
-    <div class="card mb-6">
-        <div class="card-body">
-            <div>
-                <h3>Doanh thu theo năm</h3>
-            </div>
-            <div class="table-responsive">
-                @if (revenuesYear.Count() > 0)
-                {
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>STT</th>
-                                <th>Năm</th>
-                                <th>Doanh thu</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @{
-                                var stt = 0;
-                                @foreach (var item in revenuesYear)
-                                {
-                                    <tr>
-                                        <td>@Html.Raw(stt = stt + 1)</td>
-                                        <td>@item.Year</td>
-                                        <td>@item.Revenues</td>
-                                    </tr>
-                                }
-                            }
-                        </tbody>
-                    </table>
-                }
-                else
-                {
-                    <span>Không có thống kê nào</span>
-                }
-
-            </div>
-        </div>
-    </div>
-
 </div>

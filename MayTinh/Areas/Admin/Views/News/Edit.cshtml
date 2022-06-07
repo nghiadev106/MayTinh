@@ -90,13 +90,13 @@
                             <select class="form-control" id="Status" asp-for="Status">
                                 @if (Model.Status == 1)
                                 {
-                                    <option value="1" selected>Còn hàng</option>
-                                    <option value="0">Hết hàng</option>
+                                    <option value="1" selected>Hoạt động</option>
+                                    <option value="0">Khóa</option>
                                 }
                                 else
                                 {
-                                    <option value="1">Còn hàng</option>
-                                    <option value="0" selected>Hết hàng</option>
+                                    <option value="1" >Hoạt động</option>
+                                    <option value="0" selected>Khóa</option>
                                 }
                             </select>
                         </div>

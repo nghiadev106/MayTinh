@@ -149,6 +149,14 @@ namespace MayTinh
                 });
 
                 endpoints.MapControllerRoute(
+               name: "product",
+               pattern: "shop", new
+               {
+                   controller = "Products",
+                   action = "ListProduct"
+               });
+
+                endpoints.MapControllerRoute(
                 name: "Blog Detail",
                 pattern: "chi-tiet-tin/{url}/{id}", new
                 {
@@ -180,6 +188,15 @@ namespace MayTinh
                      controller = "Home",
                      action = "Contact"
                  });
+
+                //endpoints.MapControllerRoute(
+                //name: "admin",
+                //pattern: "admin", new
+                //{
+                //    areas="Admin",
+                //    controller = "User",
+                //    action = "Login"
+                //});
 
                 endpoints.MapControllerRoute(
                 name: "areas",
