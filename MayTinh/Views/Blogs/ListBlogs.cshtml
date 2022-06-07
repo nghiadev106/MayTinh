@@ -1,91 +1,88 @@
 ﻿@model MayTinh.Models.PaginationSet<MayTinh.Data.News>
 @{
-    ViewData["Title"] = "Danh mục tin tức";
+    ViewData["Title"] = "Danh mục sản phẩm";
     var ListCate = (List<MayTinh.Data.CategoriesNew>)ViewBag.ListCate;
-    var ListNews = (List<MayTinh.Data.News>)ViewBag.ListNews;
+    var cate = (MayTinh.Data.CategoriesNew)ViewBag.category;
 }
 
-
-<main id="main" class="">
-    <div id="content" class="blog-wrapper blog-archive page-wrapper">
-        <div class="row row-large row-divided ">
-            <div class="large-9 col">
-                <div class="row large-columns-1 medium-columns- small-columns-1">
-                    @if (ListNews.Count() > 0)
-                    {
-                        foreach (var item in ListNews)
-                        {
-                            <div class="col post-item">
-                                <div class="col-inner">
-                                    <a href="/chi-tiet-tin/@item.Url/@item.Id" class="plain">
-                                        <div class="box box-vertical box-text-bottom box-blog-post has-hover">
-                                            <div class="box-image" style="width:40%;">
-                                                <div class="image-cover" style="padding-top:56%;">
-                                                    <img width="600" height="400" src="@item.Logo" class="attachment-medium size-medium wp-post-image" alt="@item.Name" sizes="(max-width: 600px) 100vw, 600px" />
-                                                </div>
-                                            </div><!-- .box-image -->
-                                            <div class="box-text text-left">
-                                                <div class="box-text-inner blog-post-inner">
-                                                    <h5 class="post-title is-large ">@item.Name</h5>
-                                                    <div class="is-divider"></div>
-                                                    @if (item.Description.Length > 120)
-                                                    {
-                                                        <p class="from_the_blog_excerpt ">
-                                                            @item.Description.Substring(0, 120)...
-                                                        </p>
-                                                    }
-                                                    else
-                                                    {
-                                                        <p class="from_the_blog_excerpt "> @item.Description</p>
-                                                    }
-                                                </div><!-- .box-text-inner -->
-                                            </div><!-- .box-text -->                                   
-                                        </div><!-- .box -->
-                                    </a><!-- .link -->
-                                </div><!-- .col-inner -->
-                            </div><!-- .col -->
-
-                        }
-
-                    }
+<div class="container-fluid pt-5">
+    <div class="text-center mb-4">
+        <h2 class="section-title px-5"><span class="px-2">Tin tức</span></h2>
+    </div>
+    <div class="row px-xl-5 pb-3">
+        @if (Model.Items.Count() > 0)
+        {
+            foreach (var item in Model.Items)
+            {
+                <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                    <div class="card product-item border-0 mb-4">
+                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                            <img class="img-fluid w-100" src="@item.Logo" alt="">
+                        </div>
+                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                            <h6 class="text-truncate mb-3">@item.Name</h6>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between bg-light border">
+                            <a href="/tin-tuc/@item.Url/@item.Id" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Chi tiết</a>
+                        </div>
+                    </div>
                 </div>
-
-            </div> <!-- .large-9 -->
-
-            <div class="post-sidebar large-3 col">
-                <div id="secondary" class="widget-area " role="complementary">
-                   
-                        <span class="widget-title "><span>Bài viết mới</span></span><div class="is-divider small"></div><ul>
-    @if (ListNews.Count() > 0)
-    {
-        foreach (var item in ListNews)
-        {
-            <li>
-                <a href="/chi-tiet-tin/@item.Url/@item.Id">@item.Name</a>
-            </li>
+            }
         }
-    }
-</ul>
-                <aside id="categories-2" class="widget widget_categories">
-                        <span class="widget-title "><span>Chuyên mục</span></span><div class="is-divider small"></div>		<ul>
-    @if (ListCate.Count() > 0)
-    {
-foreach(var item in ListCate)
+
+    </div>
+
+    <div class="row px-xl-5 pb-3">
+
+        @if (Model.TotalPages > 1)
         {
-            <li class="cat-item cat-item-17 current-cat">
-                <a href="/tin-tuc/@item.Url/@item.Id">@item.Name</a>
-            </li>
+            // Create numeric links
+            var startPageIndex = Math.Max(1, Model.Page - Model.MaxPage / 2);
+            var endPageIndex = Math.Min(Model.TotalPages, Model.Page + Model.MaxPage / 2);
+
+            <nav>
+                <ul class="pagination">
+                    @if (Model.Page > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="?sort=@Model.Sort&pageSize=@Model.PageSize&page=1" aria-label="First">
+                                <i class="fa fa-angle-double-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?sort=@Model.Sort&pageSize=@Model.PageSize&page=@(Model.Page-1)" aria-label="Previous">
+                                <i class="fa fa-angle-double-left"></i>
+                            </a>
+                        </li>
+                    }
+                    @for (int i = startPageIndex; i <= endPageIndex; i++)
+                    {
+                        if (Model.Page == i)
+                        {
+                            <li class="active page-item"><a class="page-link" href="?sort=@Model.Sort&pageSize=@Model.PageSize&page=@i" title="Trang @i">@i</a></li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a class="page-link" href="?sort=@Model.Sort&pageSize=@Model.PageSize&page=@i" title="Trang @i">@i</a></li>
+                        }
+                    }
+                    @if (Model.Page < Model.TotalPages)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="?sort=@Model.Sort&pageSize=@Model.PageSize&page=@(Model.Page+1)" aria-label="Next">
+                                <i class="fa fa-angle-double-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?sort=@Model.Sort&pageSize=@Model.PageSize&page=@Model.TotalPages" aria-label="Last">
+                                <i class="fa fa-angle-double-right"></i>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
         }
-    }
-
-</ul>
-                    </aside>
-                </div><!-- #secondary -->
-            </div><!-- .post-sidebar -->
-
-        </div><!-- .row -->
-
-    </div><!-- .page-wrapper .blog-wrapper -->
+    </div>
+</div>
 
 
-</main><!-- #main -->

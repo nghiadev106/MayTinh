@@ -26,49 +26,27 @@
                         amount = item.price * item.quantity;
                     } 
                     html += `
- <tr class="woocommerce-cart-form__cart-item cart_item">
-
-                                                    <td class="product-remove">
-							<a class="remove removeItem" data-id="` + item.productId + `" aria-label="Xóa sản phẩm này" data-product_id="409" data-product_sku="">&times;</a>	
-</td>
-
-                                                    <td class="product-thumbnail">
-                                                        <a href="/san-pham/`+ item.url + `/` + item.productId + `"><img width="300" height="300" src="` + item.logo + `" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="` + item.name + `" sizes="(max-width: 300px) 100vw, 300px" /></a>
-                                                    </td>
-
-                                                    <td class="product-name" data-title="Sản phẩm">
-                                                        <a href="/san-pham/`+ item.url + `/` + item.productId + `">` + item.name + `</a>							<div class="show-for-small mobile-product-price">
-                                                            <span class="mobile-product-price__qty">1 x </span>
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="product-price" data-title="Giá">
-                                                        <span class="woocommerce-Price-amount amount">` + numberWithCommas(item.price) + `&nbsp;<span class="woocommerce-Price-currencySymbol">&#8363;</span></span>
-                                                    </td>
-
-                                                    <td class="product-quantity" data-title="Số lượng">
-                                                        <div class="quantity buttons_added">
-                                                            <input type="button" value="-" data-id="` + item.productId + `" class="minus button is-form qty-decrease-cart">		<label class="screen-reader-text" for="quantity_626028758e985">Số lượng</label>
-                                                            <input type="number"
-                                                                   id="quantity_` + item.productId + `"
-                                                                   class="input-text text"
-                                                                   step="1"
-                                                                   min="0"
-                                                                   max="9999"
-                                                                   name="cart[a96b65a721e561e1e3de768ac819ffbb][qty]"
-                                                                   value="`+ item.quantity + `"
-                                                                   title="SL"
-                                                                   size="4"
-                                                                   inputmode="numeric" />
-                                                            <input type="button" data-id="` + item.productId + `" value="+" class="plus button is-form qty-increase-cart">
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="product-subtotal" data-title="Tạm tính">
-                                                        <span class="woocommerce-Price-amount amount">` + numberWithCommas(amount) + `&nbsp;<span class="woocommerce-Price-currencySymbol">&#8363;</span></span>
-                                                    </td>
-                                                </tr>
-
+  <tr>
+                                            <td class="align-middle"><img src="` + item.logo + `" alt="" style="width: 50px;"> ` + item.name + `</td>
+                                            <td class="align-middle">` + numberWithCommas(item.price) + `</td>
+                                            <td class="align-middle">
+                                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                                    <div class="input-group-btn  qty-decrease-cart"  data-id="` + item.productId + `" >
+                                                        <button class="btn btn-sm btn-primary btn-minus">
+                                                            <i class="fa fa-minus"></i>
+                                                        </button>
+                                                    </div>
+                                                    <input type="text"   id="quantity_` + item.productId + `"  class="form-control form-control-sm bg-secondary text-center"    value="` + item.quantity + `">
+                                                    <div class="input-group-btn qty-increase-cart"  data-id="` + item.productId + `" >
+                                                        <button class="btn btn-sm btn-primary btn-plus">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle">` + numberWithCommas(amount) + `</td>
+                                            <td class="align-middle"><button class="btn btn-sm btn-primary removeItem"  data-id="` + item.productId + `"><i class="fa fa-times"></i></button></td>
+                                        </tr>
 `;
                     total += amount;
                 });
@@ -109,6 +87,27 @@
             if (!isNaN(qty) && qty >= 1) {
                 quantity = qty;
             }
+            $.ajax({
+                type: "POST",
+                url: '/Cart/AddToCart',
+                data: {
+                    id: id,
+                    quantity: quantity
+                },
+                success: function () {
+                    toastr.success('Thêm giỏ hàng thành công', 'Thành công')
+                    loadData();
+                },
+                error: function () {
+                    toastr.error('Thêm giỏ hàng không thành công', 'Thất bại')
+                }
+            });
+        });
+
+        $('body').on('click', '.btn-add-cart-2', function (e) {
+            e.preventDefault();
+            const id = $(this).data('id');
+            var quantity = 1;
             $.ajax({
                 type: "POST",
                 url: '/Cart/AddToCart',

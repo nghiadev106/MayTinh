@@ -136,8 +136,8 @@ namespace MayTinh
 
                 endpoints.MapControllerRoute(
                  name: "ProductCategories",
-                 pattern: "chuyen-muc/{url}/{id}",
-                 defaults: new { controller = "Home", action = "ProductCategories" }
+                 pattern: "thuong-hieu/{url}/{id}",
+                 defaults: new { controller = "Products", action = "ProductCategories" }
                  );
 
                 endpoints.MapControllerRoute(

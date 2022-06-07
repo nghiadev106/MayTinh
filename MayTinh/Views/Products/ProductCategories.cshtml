@@ -1,0 +1,99 @@
+﻿@model MayTinh.Models.PaginationSet<MayTinh.Data.Product>
+@{
+    ViewData["Title"] = "Danh mục sản phẩm";
+    var ListCate = (List<MayTinh.Data.Category>)ViewBag.ListCate;
+    var cate = (MayTinh.Data.Category)ViewBag.category;
+}
+
+<div class="container-fluid pt-5">
+    <div class="text-center mb-4">
+        <h2 class="section-title px-5"><span class="px-2">@cate.Name</span></h2>
+    </div>
+    <div class="row px-xl-5 pb-3">
+        @if (Model.Items.Count() > 0)
+        {
+            foreach (var item in Model.Items)
+            {
+                <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                    <div class="card product-item border-0 mb-4">
+                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                            <img class="img-fluid w-100" src="@item.Logo" alt="">
+                        </div>
+                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                            <h6 class="text-truncate mb-3">@item.Name</h6>
+                            <div class="d-flex justify-content-center">
+                                @if (item.PriceDiscount > 0)
+                                {
+                                    <h6>@item.PriceDiscount</h6><h6 class="text-muted ml-2"><del>@item.Price</del></h6>
+                                }
+                                else
+                                {
+                                    <h6>@item.Price</h6>
+                                }
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between bg-light border">
+                            <a href="/san-pham/@item.Url/@item.Id" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Chi tiết</a>
+                            <a href=""  data-id="@item.Id"  class="btn btn-sm text-dark p-0 btn-add-cart-2"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm giỏ hàng</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+
+    <div  class="row px-xl-5 pb-3">
+
+        @if (Model.TotalPages > 1)
+        {
+            // Create numeric links
+            var startPageIndex = Math.Max(1, Model.Page - Model.MaxPage / 2);
+            var endPageIndex = Math.Min(Model.TotalPages, Model.Page + Model.MaxPage / 2);
+
+            <nav>
+                <ul class="pagination">
+                    @if (Model.Page > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="?sort=@Model.Sort&pageSize=@Model.PageSize&page=1" aria-label="First">
+                                <i class="fa fa-angle-double-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?sort=@Model.Sort&pageSize=@Model.PageSize&page=@(Model.Page-1)" aria-label="Previous">
+                                <i class="fa fa-angle-double-left"></i>
+                            </a>
+                        </li>
+                    }
+                    @for (int i = startPageIndex; i <= endPageIndex; i++)
+                    {
+                        if (Model.Page == i)
+                        {
+                            <li class="active page-item"><a class="page-link" href="?sort=@Model.Sort&pageSize=@Model.PageSize&page=@i" title="Trang @i">@i</a></li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a class="page-link" href="?sort=@Model.Sort&pageSize=@Model.PageSize&page=@i" title="Trang @i">@i</a></li>
+                        }
+                    }
+                    @if (Model.Page < Model.TotalPages)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="?sort=@Model.Sort&pageSize=@Model.PageSize&page=@(Model.Page+1)" aria-label="Next">
+                                <i class="fa fa-angle-double-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?sort=@Model.Sort&pageSize=@Model.PageSize&page=@Model.TotalPages" aria-label="Last">
+                                <i class="fa fa-angle-double-right"></i>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+    </div>
+</div>
+
+

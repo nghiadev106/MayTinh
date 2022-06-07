@@ -37,41 +37,7 @@ namespace MayTinh.Controllers
             return View();
         }
 
-        public async Task<IActionResult> ProductCategories(long id, string sort, int page = 1,int pageSize=12)
-        {
-            int totalRow = 0;
-            var category = await _context.Categories.Where(x => x.Id == id).FirstOrDefaultAsync();
-            var categories= await _context.Categories.Where(x => x.Id == id||x.ParentId==id).ToListAsync();
-            var ListProductCategories =  await _context.Products.Where(x => x.CategoryId == id && x.Status == 1).ToListAsync();
-            if (sort == "asc")
-            {
-                ListProductCategories=ListProductCategories.OrderBy(x => x.PriceDiscount).ToList();
-            }
-            else if(sort=="desc")
-            {
-                ListProductCategories=ListProductCategories.OrderByDescending(x => x.PriceDiscount).ToList();
-            }
-            
-            totalRow = ListProductCategories.Count();
-            var sanphams = ListProductCategories.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            int totalPage = (int)Math.Ceiling((double)totalRow / pageSize);
-
-            var paginationSet = new PaginationSet<Product>()
-            {
-                Items = sanphams,
-                MaxPage = 5,
-                Page = page,
-                Sort=sort,
-                PageSize=pageSize,
-                TotalCount = totalRow,
-                TotalPages = totalPage
-            };
-            ViewBag.category = category;
-            ViewBag.ListCate = await _context.Categories.ToListAsync();
-            return View(paginationSet);
-        }
-
-        public IActionResult PolicyAndTerms()
+        public IActionResult About()
         {
             return View();
         }
